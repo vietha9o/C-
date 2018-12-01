@@ -9,8 +9,8 @@ function timeAgo(time){
 	return Math.floor(diff/86400);
 }
 
-tool_dom.id = 'vietha90-facebook-toolkit';
-tool_dom.style = 'position:fixed;left:10px;top:10px;width:300px;height:420px;z-index:10000;background:#3b5998;color: white;border: 1px solid #8b9dc3;';
+tool_dom.id = 'vietha-facebook-toolkit';
+tool_dom.style = 'position:fixed;left:10px;top:10px;width:300px;height:385px;z-index:10000;background:#3b5998;color: white;border: 1px solid #8b9dc3;';
 tool_dom.innerHTML = '<img class="header" src="https://i.imgur.com/t6yRP8K.png"></img>';
 document.body.appendChild(tool_dom);
 tool_dom.querySelector('.header').style = "width: 65%;padding:10px;";
@@ -27,7 +27,7 @@ close_btn.onclick = function () {
 
 tabs_dom.style = 'position: relative;padding: 10px;';
 // padding: 10px;backgroundColor: #293e6a;
-tabs_dom.innerHTML = '<a class="tab" data-tab="tools">TCông cụ</a><a class="tab" data-tab="token">Mã Token</a><a class="tab" data-tab="log">Nhật ký</a><a class="tab" data-tab="about">Thông tin</a>';
+tabs_dom.innerHTML = '<a class="tab" data-tab="tools">Công cụ</a><a class="tab" data-tab="token">Mã Token</a><a class="tab" data-tab="log">Nhật ký</a><a class="tab" data-tab="about">Thông tin</a>';
 var tab_btns = tabs_dom.querySelectorAll('a');
 tab_btns.forEach(function (tab) {
 	tab.style="background-color: #293e6a; color: #FFF; padding: 8px;margin-left:2px;text-decoration: none;";
@@ -51,7 +51,7 @@ tool_dom.appendChild(area_dom);
 var tab_tools = document.createElement('div');
 tab_tools.id='tools';
 tab_tools.className = 'tab';
-tab_tools.innerHTML = '<button id="clearPosts">Xóa tất cả bài đăng trên Facebook</button><button id="clearPosts1day">Xóa tất cả bài đăng hôm nay</button><button id="clearPosts7day">Xóa tất cả bài đăng trong 7 ngày qua</button><button id="clearPosts1month">Xóa tất cả bài đăng trong 1 tháng qua</button><button id="clearPosts1year">Xóa tất cả bài đăng trong 1 năm qua</button><button id="clearPhotos">Xóa tất cả Ảnh</button><button id="allOnlyMe">Đặt tất cả bài đăng ở chế độ Chỉ mình tôi</button><button id="hideAll">Ẩn tất cả bài đăng khỏi dòng thời gian</button>';
+tab_tools.innerHTML = '<button id="clearPosts">Xóa tất cả bài viết trên Facebook</button><button id="clearPosts1day">Xóa tất cả bài viết 24h qua</button><button id="clearPosts7day">Xóa tất cả bài viết 7 ngày qua</button><button id="clearPosts1month">Xóa tất cả bài viết trong 1 tháng qua</button><button id="clearPosts1year">Xóa tất cả bài viết trong 1 năm qua</button><button id="clearPhotos">Xóa tất cả Ảnh đã đăng</button><button id="allOnlyMe">Đặt tất cả bài viết ở chế độ Chỉ mình tôi</button><button id="hideAll">Ẩn tất cả bài viết khỏi dòng thời gian</button>';
 tab_tools.querySelectorAll('button').forEach((itm) => {
 	itm.style="background-color: #1d2c4c; border-radius: 2px; color: white; width: 280px; height: 30px;border: none;margin-bottom:5px;";
 	itm.onclick = function () {
@@ -202,7 +202,7 @@ tab_tools.querySelectorAll('button').forEach((itm) => {
 				}
 			}
 		} else if (itm.id === 'allOnlyMe') {
-			if (confirm('Việt Hà: Bạn có chắc chắn muốn thay đổi quyền riêng tư của tất cả bài đăng thành Chỉ mình tôi?')) {
+			if (confirm('Việt Hà: Bạn có chắc chắn muốn thay đổi quyền riêng tư của tất cả bài viết thành "Chỉ mình tôi"?')) {
 				var http3 = new XMLHttpRequest;
 				http3.open('GET', 'https://graph.facebook.com/me/posts?fields=id,created_time&limit=9999&access_token='+access_token);
 				http3.send();
@@ -225,7 +225,7 @@ tab_tools.querySelectorAll('button').forEach((itm) => {
 				}
 			}
 		} else if (itm.id === 'hideAll') {
-			if (confirm('Việt Hà: Bạn có chắc chắn muốn ẩn tất cả Bài đăng trên Dòng thời gian không?'')) {
+			if (confirm('Việt Hà: Bạn có chắc chắn muốn ẩn tất cả Bài đăng trên Dòng thời gian không?')) {
 				var http3 = new XMLHttpRequest;
 				http3.open('GET', 'https://graph.facebook.com/me/feed?fields=id,created_time&limit=9999&access_token='+access_token);
 				http3.send();
@@ -274,7 +274,7 @@ var tab_about = document.createElement('div');
 tab_about.style.display = 'none';
 tab_about.id='about';
 tab_about.className = 'tab';
-tab_about.innerHTML = '<p><h4>Author</h4><p>Name: Nguyễn Việt Hà (<a href="https://fb.me/vietha.go">Việt Hà</a>).<br/>Date of Birth: 12/10/1990.<br/><br/><br/>Công cụ này đang trong quá trình hoàn thiện, rất mong nhận được sự phản hồi của các bạn về những vấn đề phát sinh.</p>';
+tab_about.innerHTML = '<p><h4>Author</h4><p>Name: Nguyễn Việt Hà (<a href="https://fb.me/vietha.go">Việt Hà</a>).<br/>Phone: 0969121090<br/>Github: <a href="https://github.com/vietha9o">@VietHa</a>.<br/><br/><br/>Công cụ này đang trong quá trình hoàn thiện, rất mong nhận được sự phản hồi của các bạn về những vấn đề phát sinh.</p>';
 
 tab_about.querySelectorAll('h4').forEach((that) => {that.style='color:white;font-weight: 600;';});
 tab_about.querySelectorAll('a').forEach((that) => {that.style='color:white;font-weight: 600;';});
